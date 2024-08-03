@@ -14,8 +14,8 @@ using namespace std;
 
 void calcularRaices(int a, int b, int c, double& R1, double& R2, bool &oye, int discriminante){
 	if(discriminante > 0){
-		R1 = (-b + discriminante)/2*a; 
-	  	R2 = ( b + discriminante)/2*a;
+		R1 = -b + sqrt(discriminante)/2*a; 
+	  	R2 = -b - sqrt(discriminante)/2*a;
 	}
 	else{
 	    oye = false; 
@@ -38,10 +38,10 @@ int main(){
 	
 	calcularRaices(a, b, c, X1, X2, confirma, discriminante); 
 	cout<<endl; 
-	if(confirma != true){
+	if(confirma == false){
 		cout<<"\nLa ecuacion no tiene raices reales. "; 
 	}
-	else if (confirma = true){
+	else if (confirma == true){
 		cout<<"\nLas raices de la ecuacion son: "<<"X1 = "<<X1<<". X2 = "<<X2<<endl;
 	}
  
