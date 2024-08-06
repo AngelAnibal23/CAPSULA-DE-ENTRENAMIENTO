@@ -14,6 +14,7 @@ using namespace std;
 
 int main(){
 	int numero, cantidad, numeroAleatorio; 
+	int contCom, contHum; 
 	
 	cout<<"Digite la cantidad de numeros a generar: "; 
 	cin>>cantidad; 

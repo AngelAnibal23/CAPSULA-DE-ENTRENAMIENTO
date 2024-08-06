@@ -14,8 +14,8 @@ using namespace std;
 
 void calcularRaices(int a, int b, int c, double& R1, double& R2, bool &oye, int discriminante){
 	if(discriminante > 0){
-		R1 = -b + sqrt(discriminante)/2*a; 
-	  	R2 = -b - sqrt(discriminante)/2*a;
+		R1 = -b + sqrt(discriminante)/(2*a); 
+	  	R2 = -b - sqrt(discriminante)/(2*a); 
 	}
 	else{
 	    oye = false; 
