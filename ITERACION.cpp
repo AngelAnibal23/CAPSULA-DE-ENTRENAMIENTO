@@ -2,7 +2,7 @@
 using namespace std; 
 
 int main(){
-	double num, invirtiendo; 
+	int num, invirtiendo; 
 	
 	cout<<"Digite el numero: "; 
 	cin>>num; 
