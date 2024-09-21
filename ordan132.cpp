@@ -3,7 +3,7 @@
 using namespace std; 
 
 int main(){
-	int a[]={1,3,4,5,6,7,4,234,54,23}; 
+	int a[]={1,3,4,5,6,7,4,30,54,23}; 
 	int aux; 
 	
 	for(int i=0; i<10; i++){
