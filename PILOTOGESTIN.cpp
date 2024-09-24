@@ -60,17 +60,29 @@ void listarNotas(Estudiante e[], int cant){
 	 }
 }
 
-/*
+
 void ordenarPromedios(Estudiante e[], int cant){
 	Estudiante aux; 
-	double k; 
+	int k; 
 	
-	for(int i=0; i<cant; i++){
-		aux = 
+	for(int i=1; i<cant; i++){
+		aux = e[i]; 
+		k = i -1;
+		while((k>=0) &&  aux.prom < e[k].prom){
+			e[k+1] = e[k];
+			k--;  
+		} 
+		e[k+1] = aux; 
 	}
+	
+	 for(int i=0; i<cant; i++){
+     	cout<<"\nEstudiante "<<e[i].nombre<<endl; 
+     	cout<<"Promedio: "<<e[i].prom<<endl; 
+     	cout<<"_________________________________"<<endl; 
+     	cout<<endl;
+	 }
 }
 
-*/
 
 int main(){
 	
@@ -90,8 +102,7 @@ int main(){
 	   cout<<"\nDigite una de las siguientes opciones: "<<endl;
 	   cout<<"1. Ingresar notas. "<<endl; 
 	   cout<<"2. Ver notas. "<<endl; 
-	   cout<<"3. Mostrar promedios mas altos por orden descendente. "<<endl; 
-	   cout<<"4. Mostrar promedios mas bajos por orden desecente. "<<endl;
+	   cout<<"3. Mostrar promedios mas altos por orden ascendente. "<<endl; 
 	   cout<<"0. Salir. "<<endl;
 	   cout<<"Opcion a elegir: ";
 	   cin>>opcion;    
@@ -109,11 +120,7 @@ int main(){
 			break;
 		 }
 		 case 3:{
-		 	//ordenarPromedios(est, cantEst); 
-			break;
-		 }
-		 case 4:{
-		 	
+		 	ordenarPromedios(est, cantEst); 
 			break;
 		 }
 		 default: break; 
