@@ -51,10 +51,11 @@ int main(){
 	
 	llenarRegistro(n, mon);	
 	
+	cout<<"\nPoliniomio ingresado: ";
 	mostrarPolinomio(n,mon);
 	
 	ordenaPolinomio(n,mon);
-	
+	cout<<"\nPolinomio Ordenado: "; 
 	mostrarPolinomio(n,mon);
 	
 	return 0; 
