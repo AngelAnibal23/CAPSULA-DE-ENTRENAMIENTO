@@ -62,6 +62,14 @@ int main(){
 				llenaregistro(fe, per, n); 
 				break;
 			}
+			case 2:{
+				mostraregistro(fe, per, n); 
+				break;
+			}
+			case 3:{
+				mostrarorden(fe, per, n); 
+				break;
+			}
 		}
 	}while(opcion != 0); 
 	
