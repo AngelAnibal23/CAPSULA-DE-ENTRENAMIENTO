@@ -21,6 +21,7 @@ struct Fecha{
 };
 
 void llenaregistro(Fecha fe[], Personal per[], int n){
+	cout<<endl; 
 	for(int i=0; i<n; i++){
 		cout<<"\nDNI: ";
 		cin.ignore(); 
@@ -36,8 +37,61 @@ void llenaregistro(Fecha fe[], Personal per[], int n){
 		cout<<"........................"; 
 		cout<<"\n"; 
 	}
+	cout<<endl; 
 }
 
+void mostraregistro(Fecha fe[], Personal per[], int n){
+	cout<<endl; 
+	for(int i=0; i<n; i++){
+		cout<<"\nDNI: "<<per[i].dni<<endl;
+		cout<<"Nombre: "<<per[i].nombres<<endl; 
+		cout<<"Fecha de nacimiento: "<<fe[i].dia<<"/"<<fe[i].mes<<"/"<<fe[i].anho<<endl; 
+		cout<<"..............................";
+	}
+}
+
+int compararFechas(Fecha f1, Fecha f2) {
+    if (f1.anho < f2.anho) {
+        return -1;
+    }
+	else if (f1.anho > f2.anho) {
+        return 1;
+    } 
+	else { 
+        if (f1.mes < f2.mes) {
+            return -1;
+        } 
+		else if (f1.mes > f2.mes) {
+            return 1;
+        } 
+		else { 
+            if (f1.dia < f2.dia) {
+                return -1;
+            } 
+			else if (f1.dia > f2.dia) {
+                return 1;
+            } 
+			else {
+                return 0; 
+            }
+        }
+    }
+}
+
+void ordenarPorFecha(Fecha fe[], Personal per[], int n) {
+    for (int i = 1; i < n; i++) {
+        Fecha aux = fe[i];
+        Personal auxx = per[i];
+        int j = i - 1;
+        while (j >= 0 && compararFechas(fe[j], aux) > 0) {
+            fe[j + 1] = fe[j];
+            per[j + 1] = per[j];
+            j--;
+        }
+        fe[j + 1] = aux;
+        per[j + 1] = auxx;
+    }
+}
 
 int main(){
 	int n; 
@@ -67,10 +121,13 @@ int main(){
 				break;
 			}
 			case 3:{
-				mostrarorden(fe, per, n); 
+				ordenarPorFecha(fe , per, n);
+				cout<<"\nRegistro ordenado por fecha de nacimiento: "<<endl; 
+				mostraregistro(fe, per, n);
 				break;
 			}
 		}
+		
 	}while(opcion != 0); 
 	
 	
