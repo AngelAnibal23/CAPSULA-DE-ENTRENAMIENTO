@@ -11,9 +11,9 @@ int main(){
 	int size; 
 	int position; 
 	
-	int numbers[]={1,3,4,5,6,7,2,4,5,634,6,45,76,5453}; 
+	int numbers[]={1,2,3,4,5,6,7,8,9,63,70,453,2236,5453}; 
 	
-	size = numbers.lenght(); 
+	size = sizeof(numbers) / sizeof(numbers[0]); 
 	
 	cout<<"\nWrite the number that you want to find: "; 
 	cin>>num;
@@ -21,6 +21,46 @@ int main(){
 	
 	position = binarieSearch(num, numbers, size);
 	
+	if(position >= 0){
+		cout<<"The number: "<<num<<". Actually exist in the array. "<<endl;
+		cout<<"His position is: "<<-position; 
+	}
+	else{
+		cout<<"The number: "<<num<<". doesn't exist in the array. "<<endl;
+		cout<<"It should be on the position: "<<-position<<endl; 
+	}
 	
 	return 0; 
+}
+
+int binarieSearch(int dato, int a[], int n){
+	int pos; 
+	int izq = 0;
+	int der = n-1; 
+	int cen = 0; 
+	int m; 
+	
+	while(izq <= der && cen == 0){
+		m = (izq + der)/2; 
+		if(a[m]==dato){
+			cen=1; 
+		}
+		else{
+			if(	dato >	a[m]){
+				izq = m + 1; 
+			}
+			else{
+				der = m - 1;  
+			}
+		}
+	}
+	
+	if(cen==1){
+		pos = m;
+	}
+	else{
+		pos = -izq;
+	}
+	
+	return pos; 
 }
