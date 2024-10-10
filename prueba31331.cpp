@@ -1,6 +1,7 @@
 #include <iostream> 
 #include <string>
-using namespace std; 
+#include <windows.h>
+using namespace std;
 
 struct Personal{
 	string dni; 
@@ -13,7 +14,7 @@ struct Fecha{
 	int anho; 	
 };
 
-void llenaregistro(Fecha fe[], Personal per[], int n){
+void llenaregistro(Fecha fec[], Personal per[], int n){
 	cout<<endl; 
 	for(int i=0; i<n; i++){
 		cout<<"\nDNI: ";
@@ -22,41 +23,41 @@ void llenaregistro(Fecha fe[], Personal per[], int n){
 		cout<<"Nombre: ";
 		getline(cin, per[i].nombres); 
 		cout<<"Dia de nac: "; 
-		cin>>fe[i].dia; 
+		cin>>fec[i].dia; 
 		cout<<"Mes de nac: "; 
-		cin>>fe[i].mes; 
-		cout<<"Anho: "; 
-		cin>>fe[i].anho; 
+		cin>>fec[i].mes; 
+		cout<<"Año: "; 
+		cin>>fec[i].anho; 
 		cout<<"........................"; 
 		cout<<"\n"; 
 	}
 	cout<<endl; 
 }
 
-void mostraregistro(Fecha fe[], Personal per[], int n){
+void mostraregistro(Fecha fec[], Personal per[], int n){
 	cout<<endl; 
 	for(int i=0; i<n; i++){
 		cout<<"\nDNI: "<<per[i].dni<<endl;
 		cout<<"Nombre: "<<per[i].nombres<<endl; 
-		cout<<"Fecha de nacimiento: "<<fe[i].dia<<"/"<<fe[i].mes<<"/"<<fe[i].anho<<endl; 
+		cout<<"Fecha de nacimiento: "<<fec[i].dia<<"/"<<fec[i].mes<<"/"<<fec[i].anho<<endl; 
 		cout<<"..............................";
 	}
 }
 
-int compararFechas(Fecha f1, Fecha f2) {
-    if (f1.anho < f2.anho) {
+int compararFechas(Fecha fa, Fecha fb) {
+    if (fa.anho < fb.anho) {
         return -1;
-    } else if (f1.anho > f2.anho) {
+    } else if (fa.anho > fb.anho) {
         return 1;
     } else { 
-        if (f1.mes < f2.mes) {
+        if (fa.mes < fb.mes) {
             return -1;
-        } else if (f1.mes > f2.mes) {
+        } else if (fa.mes > fb.mes) {
             return 1;
         } else { 
-            if (f1.dia < f2.dia) {
+            if (fa.dia < fb.dia) {
                 return -1;
-            } else if (f1.dia > f2.dia) {
+            } else if (fa.dia > fb.dia) {
                 return 1;
             } else {
                 return 0; 
@@ -65,61 +66,46 @@ int compararFechas(Fecha f1, Fecha f2) {
     }
 }
 
-void ordenarPorSeleccion(Fecha fe[], Personal per[], int n) {
+void ordenarPorSeleccion(Fecha fec[], Personal per[], int n) {
+	Fecha aux; 
+	Personal aux2; 
+	int P; 
+	
     for (int i = 0; i < n - 1; i++) {
-        int minIndex = i;
+        int k = i;
         for (int j = i + 1; j < n; j++) {
-            if (compararFechas(fe[j], fe[minIndex]) < 0) {
-                minIndex = j;
+        	P = compararFechas(fec[j], fec[k]); 
+            if (P < 0) {
+                k = j;
             }
         }
         // Intercambiamos el menor con el elemento en la posición i
-        Fecha tempFecha = fe[i];
-        fe[i] = fe[minIndex];
-        fe[minIndex] = tempFecha;
+        aux = fec[i];
+        fec[i] = fec[k];
+        fec[k] = aux;
         
-        Personal tempPersonal = per[i];
-        per[i] = per[minIndex];
-        per[minIndex] = tempPersonal;
+        aux2 = per[i];
+        per[i] = per[k];
+        per[k] = aux2;
     }
 }
 
 int main(){
+	SetConsoleOutputCP(CP_UTF8);
 	int n; 
 	
 	cout<<"Digite la cantidad de elementos de la estructura: "; 
 	cin>>n; 
 	
-	Fecha fe[n]; 
+	Fecha fec[n]; 
 	Personal per[n]; 
+
+	llenaregistro(fec, per, n); 
+	ordenarPorSeleccion(fec , per, n);
 	
-	int opcion; 
+	cout<<"\nRegistro ordenado por fecha de nacimiento: "<<endl; 
+	mostraregistro(fec, per, n);
 	
-	do {
-		cout<<"1. Llenar registro. "<<endl; 
-		cout<<"2. Mostrar registro. "<<endl; 
-		cout<<"3. Mostrar ordenado. "<<endl; 
-		cout<<"Digite la opcion: "; 
-		cin>>opcion; 
-		
-		switch(opcion) {
-			case 1: {
-				llenaregistro(fe, per, n); 
-				break;
-			}
-			case 2: {
-				mostraregistro(fe, per, n); 
-				break;
-			}
-			case 3: {
-				ordenarPorSeleccion(fe , per, n);
-				cout<<"\nRegistro ordenado por fecha de nacimiento: "<<endl; 
-				mostraregistro(fe, per, n);
-				break;
-			}
-		}
-		
-	} while(opcion != 0); 
-	
+	 	
 	return 0; 
 }

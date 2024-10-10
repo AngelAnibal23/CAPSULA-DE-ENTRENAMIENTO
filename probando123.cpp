@@ -30,7 +30,25 @@ void mostrarRegistro(int n, Articulo a[]){
 		cout<<"Cantidad: "<<a[i].cantidad<<endl;
 		cout<<"___________________________________\n";
 	}  
-	cout<<endl; 
+}
+
+void ordenaArt(int n, Articulo art[], int mon[]){
+	Articulo aux; 
+	int aux2; 
+	
+	for(int i=0; i<n; i++){
+		for(int j=0; j<n-1-i; j++){
+			if(mon[j] < mon[j+1]){ 
+				aux = art[j]; 
+				art[j] = art[j+1]; 
+				art[j+1] = aux; 
+			
+				aux2 = mon[j]; 
+				mon[j] = mon[j+1]; 
+				mon[j+1] = aux2; 
+			}
+		}
+	}
 }
 
 int main(){
@@ -41,33 +59,15 @@ int main(){
 	 
 	Articulo art[n]; 
 	
+	int mon[n];
+	
 	llenarRegistro(n, art);
 	
-	Articulo aux; 
-	
-	int a2[n]; 
-	
-	// Calculamos el monto de inversión para cada artículo
 	for(int i=0; i<n; i++){
-	    a2[i] = art[i].precio * art[i].cantidad;
+	    mon[i] = art[i].precio * art[i].cantidad;
 	}
 	
-	// Ordenamiento burbuja en orden descendente según el monto de inversión
-	for(int i=0; i<n; i++){
-		for(int j=0; j<n-1-i; j++){
-			if(a2[j] < a2[j+1]){ // Comparamos los montos de inversión
-				// Intercambiamos los artículos en el arreglo art[]
-				aux = art[j]; 
-				art[j] = art[j+1]; 
-				art[j+1] = aux; 
-				
-				// También intercambiamos los valores en el arreglo a2[]
-				int temp = a2[j]; 
-				a2[j] = a2[j+1]; 
-				a2[j+1] = temp; 
-			}
-		}
-	}
+	ordenaArt(n, art, mon);  //Ordenacion por intercambio directo por la derecha 
 	
 	cout<<"\nOrden descendente segun monto de inversion: "<<endl; 
 	mostrarRegistro(n, art);
