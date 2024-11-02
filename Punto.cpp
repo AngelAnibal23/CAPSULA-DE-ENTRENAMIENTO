@@ -7,7 +7,10 @@ class Punto{
 		int y; 
 	public: 
 		Punto(){ //constructor 
-			x = 0; y = 0;  
+			cout<<"X: "; 
+			cin>>x;
+			cout<<"Y: "; 
+			cin>>y; 
 		};
 		
 		Punto(int valX, int valY){ //constructor2
