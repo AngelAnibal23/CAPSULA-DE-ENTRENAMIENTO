@@ -8,25 +8,15 @@ salida: La palabra..... tiene N vocales.
 using namespace std; 
 
 int main(){
-	vector<char> voc = {'a','A','e','E','i','I','o','O','u','U'};
+	set<char> voc = {'a','e','i','o','u'};
 	string cad;
 	
 	getline(cin, cad);  
+	 
+	int conta = 0; 
 	
-	vector<char> conver(cad.begin(), cad.end());
-	
-	int n = cad.length(); 
-	int conta; 
-	
-	if(conver.size() > voc.size()){
-		for(int i = 0; i<conver.size(); i++){
-		conta += count(conver.begin(), conver.end(), voc[i]); 
-	}
-	}
-	else{
-		for(int i = 0; i<voc.size(); i++){
-		conta += count(conver.begin(), conver.end(), voc[i]); 
-	}
+	for(char l : cad){
+		if(voc.count(tolower(l)) > 0) conta++; 
 	}
 	
 	cout<<conta; 
