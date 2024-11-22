@@ -23,7 +23,7 @@ int main(){
             sum = a[i] + a[j]; 
             if(sum == queri) count++; 
         }
-    }444
+    }
 
     cout<<endl; 
     cout<<"Contador: "<<count<<endl; 
